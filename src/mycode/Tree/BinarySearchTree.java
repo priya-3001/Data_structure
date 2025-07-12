@@ -1,6 +1,7 @@
 package mycode.Tree;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 
@@ -52,6 +53,36 @@ public class BinarySearchTree {
 			
 		}
 		
+	}
+	
+	  public List<List<Integer>> levelOrder2(BinaryNode root) {
+		List<List<Integer>> lists = new LinkedList<>();
+		Queue<BinaryNode> queue = new LinkedList<>();
+		if(root == null)
+			return lists;
+		queue.add(root);
+		BinaryNode curr = null;
+		
+		while(!queue.isEmpty()) {
+			List<Integer> list = new LinkedList<>();
+			int levelSize = queue.size();
+			for(int i=0;i<levelSize;i++)
+			{
+				curr = queue.poll();
+				list.add(curr.bstvalue);
+			
+			if(curr.left !=null) {
+				queue.add(curr.left);
+			}
+			if(curr.right != null) {
+				queue.add(curr.right);
+			}
+			
+			}
+			lists.add(list);
+			
+		}
+		return lists;
 	}
 	
 	public void preOrder(BinaryNode node) {
